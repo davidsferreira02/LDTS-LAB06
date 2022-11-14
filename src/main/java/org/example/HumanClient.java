@@ -1,20 +1,30 @@
 package org.example;
 
 public class HumanClient implements Client {
-    StringDrink drink;
-    StringRecipe recipe;
-    StringBar bar;
-    public void wants(StringDrink drink, StringRecipe recipe, StringBar bar){
-        this.drink=drink;
-        this.recipe=recipe;
-        this.bar=bar;
+
+
+    OrderingStrategy clientType;
+
+    public HumanClient(OrderingStrategy strategy) {
+        clientType = strategy;
     }
-    @Override
-   public void happyHourStarted(Bar bar){
-       bar.startHappyHour();
+
+  /*  public HumanClient() {
+        clientType = new ImpatientStrategy();
     }
+*/
+    public void wants(StringDrink drink, StringRecipe recipe, StringBar bar) {
+        clientType.wants(drink, recipe, bar);
+    }
+
     @Override
-    public void happyHourEnded(Bar bar){
-       bar.endHappyHour();
+    public void happyHourStarted(Bar bar) {
+
+        clientType.happyHourStarted((StringBar) bar);
+    }
+
+    @Override
+    public void happyHourEnded(Bar bar) {
+        clientType.happyHourEnded((StringBar) bar);
     }
 }

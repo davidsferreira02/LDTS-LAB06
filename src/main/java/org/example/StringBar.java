@@ -6,6 +6,9 @@ public class StringBar extends Bar {
     public StringBar() {
         this.isHappyHour = false;
     }
+    public void order(StringDrink drink,StringRecipe recipe){
+         recipe.mix(drink);
+    }
 
     public boolean isHappyHour() {
 
